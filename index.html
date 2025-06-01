@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Wenning</title>
+    <style>
+        :root {
+            --primary: #ff4d4d;
+            --secondary: #4d79ff;
+            --dark: #222;
+            --light: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Animasi Latar Belakang */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--light), #fff);
+            opacity: 0.8;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+        }
+
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 10%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 10%;
+            right: 10%;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        .circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: #4dff88;
+            top: 50%;
+            right: 20%;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-50px) translateX(50px);
+            }
+        }
+
+        /* Navigasi */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+            background-color: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--light);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 5%;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:first-child {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .project-links a:last-child {
+            border: 1px solid #ddd;
+            color: var(--dark);
+        }
+
+        .project-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff3333;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animasi Scroll */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card .project-links a {
+            color: white;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-img {
+                margin-bottom: 2rem;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Animasi Latar Belakang -->
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Navigasi -->
+    <nav>
+        <a href="#" class="logo">Portofolio Wenning</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content hidden">
+            <h1>Hi, I'm <span>Wenning</span></h1>
+            <h1>Someone You Need</h1>
+            <p>I build meaningful, user-focused digital solutions that solve real problems. With a love for clean code
+                and impactful design, I bring purposeful ideas to life.</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+
+            <div class="social-links">
+                <a href="https://github.com/ghalihbageur"><i class="fab fa-github"></i></a>
+                <a href="https://wa.me/6282295051851"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/enghalih"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@enghalih"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title hidden">About Me</h2>
+            <div class="about-content hidden">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="Profile Image">
+                </div>
+                <div class="about-text">
+                    <p>I'm Mohammad Wenning Ghalih, a passionate programmer and problem solver dedicated to creating
+                        useful and impactful digital solutions. With years of experience in both front-end and back-end
+                        development, I blend thoughtful design with clean, maintainable code.</p>
+                    <p>My work focuses on educational, organizational, and community-driven projects—building tools that
+                        empower users, enhance collaboration, and drive positive change. Whether it’s managing data,
+                        improving user interaction, or creating smart solutions, I aim for simplicity, clarity, and
+                        effectiveness in everything I build.</p>
+                    <p>I specialize in Laravel, React, UI/UX design, and web-based system development.</p>
+                    <div class="skills">
+                        <div class="skill">Laravel (Back-End)</div>
+                        <div class="skill">React, Inertia.js</div>
+                        <div class="skill">HTML/CSS/JavaScript</div>
+                        <div class="skill">Tailwind CSS (Front-End)</div>
+                        <div class="skill">Figma</div>
+                        <div class="skill">Git & GitHub</div>
+                        <div class="skill">Responsive Design</div>
+                        <div class="skill">UX Writing & Research</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title hidden">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card hidden">
+                    <div class="project-img">
+                        <img src="image/autotrack.png" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>GPS-Tracker Web App</h3>
+                        <p>A custom-built system that integrates location tracking for monitoring assets or individuals
+                            in real-time. Designed for practical use cases in community logistics and event
+                            coordination.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Laravel</span>
+                            <span class="project-tag">Filament</span>
+                            <span class="project-tag">Livewire</span>
+                            <span class="project-tag">Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://gps-trackerid.com/">View Project</a>
+                            <!-- <a href="#">Case Study</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card hidden">
+                    <div class="project-img">
+                        <img src="image/samudra.png" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Samudra Project – Digital Literacy Movement</h3>
+                        <p>A platform built for Gerakan Samudra, a youth-led initiative focused on history and literacy.
+                            The website hosts educational content, interactive discussions, and promotes critical
+                            thinking among Indonesian students.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">WIX</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.samudraproject.com/">View Project</a>
+                            <!-- <a href="#">Case Study</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card hidden">
+                    <div class="project-img">
+                        <img src="image/bkc.png" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>BKC Dojo Baraya Management System</h3>
+                        <p>A full-featured web platform built for managing karate dojo data, including member
+                            registration, attendance, performance tracking, and multi-role login for admins, trainers,
+                            students, and parents. Designed with modern UI and optimized for mobile devices.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Laravel</span>
+                            <span class="project-tag">Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">View Project</a>
+                            <!-- <a href="#">View Code</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="project-card hidden">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                            alt="Project 4">
+                    </div>
+                    <div class="project-info">
+                        <h3>Brand Identity System</h3>
+                        <p>Comprehensive brand identity for a startup including logo, color palette, typography, and
+                            guidelines.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Branding</span>
+                            <span class="project-tag">Logo Design</span>
+                            <span class="project-tag">Visual Identity</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">View Project</a>
+                            <a href="#">Case Study</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title hidden">Let's Connect!</h2>
+            <div class="contact-container hidden">
+                <div class="contact-info" style="text-align: center; width: 100%;">
+                    <h3>Reach me directly via</h3>
+
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/6282295051851" class="cta-button"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; margin: 1rem;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Me
+                    </a>
+
+                    <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/enghalih"
+                            style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com/@enghalih" style="background: #000; color: #fff;">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+
+                    <p style="margin-top: 2rem; opacity: 0.7;">
+                        or email me at <br>
+                        <a href="mailto:enghalih685@gmail.com" style="color: var(--primary);">enghalih685@gmail.com</a>
+                    </p>
+                    <p style="margin-top: 2rem; opacity: 0.7;">
+                        do you want a website like this? <br>
+                        <a href="https://ghalihbageur.github.io/Website-Service/" style="color: var(--primary);">visit
+                            my website development service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Portofolio</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <!-- <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+            </div> -->
+            <p class="copyright">© 2023 Mohammad Wenning Ghalih. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // Smooth Scrolling untuk Navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Efek Hover Dinamis untuk Project Cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.pageX - card.getBoundingClientRect().left;
+                const y = e.pageY - card.getBoundingClientRect().top;
+
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+
+                const angleX = (y - centerY) / 10;
+                const angleY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Animasi Teks Dinamis di Hero Section
+        const heroTitle = document.querySelector('.hero h1:nth-child(2)');
+        const professions = ['Developer', 'Digital Marketer', 'Content Creator', 'Video Editor', 'Designer'];
+        let currentProfession = 0;
+
+        function changeProfession() {
+            heroTitle.style.opacity = 0;
+
+            setTimeout(() => {
+                heroTitle.textContent = professions[currentProfession];
+                heroTitle.style.opacity = 1;
+
+                currentProfession = (currentProfession + 1) % professions.length;
+            }, 500);
+        }
+
+        setInterval(changeProfession, 3000);
+    </script>
+</body>
+
+</html>
